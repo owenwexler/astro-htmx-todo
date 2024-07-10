@@ -1,0 +1,21 @@
+---
+export const partial = true;
+
+import { db, Todos } from 'astro:db';
+
+import TodoItem from "../../../components/TodoItem.astro";
+import { getAllTodos } from '../../../../db/models';
+
+const todos = await getAllTodos();
+
+---
+
+{
+  todos.map((todo) => {
+    return (
+      <TodoItem
+        todo={todo}
+      />
+    )
+  })
+}

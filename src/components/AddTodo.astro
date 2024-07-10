@@ -1,0 +1,30 @@
+---
+
+---
+
+<form
+  method="POST"
+  action="/partials/todos/add"
+  hx-post="/partials/todos/add"
+  hx-target="#todo-container"
+  hx-swap="innerHTML"
+  class="inline"
+>
+  <div class="flex flex-row items-center justify-start space-x-5">
+    <input
+      id="add-todo-input"
+      class="border shadow-md text-lg font-bold p-1"
+      name="content"
+      placeholder="Enter todo here"
+      type="text"
+    />
+
+    <button
+      id="add-todo-button"
+      type="submit"
+      class="rounded-md p-2 bg-green-700 text-white shadow-md active:scale-95 transition-transform duration-[10ms]"
+    >
+      ADD
+    </button>
+  </div>
+</form>

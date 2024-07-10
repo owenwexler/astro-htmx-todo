@@ -1,0 +1,34 @@
+---
+import TodoItem from "../../../components/TodoItem.astro";
+
+// @ts-expect-error WHY TF UUID NOT TYPED
+import { v4 as uuidv4 } from 'uuid';
+
+import { db, Todos, NOW } from "astro:db";
+
+import { getAllTodos } from '../../../../db/models
+
+const formData = await Astro.request.formData();
+const content = formData.get("content");
+
+const newTodo = {
+  id: uuidv4(),
+  content,
+  completed: false,
+  createdAt: NOW
+};
+
+// ts-expect-error WHY THIS STUPID NO OVERLOAD ERROR AGAIN
+await db.insert(Todos).values([
+  { id: newTodo.id, content: newTodo.content }
+]);
+
+const newTodos = await getAllTodos();
+
+---
+
+{
+  newTodos.map((todo) => {
+    return <TodoItem todo={todo} />
+  })
+}

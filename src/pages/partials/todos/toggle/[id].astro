@@ -1,0 +1,22 @@
+---
+import { db } from "astro:db";
+import TodoItem from "../../../../components/TodoItem.astro";
+import { Todos } from "astro:db";
+import { eq } from "astro:db";
+import { getAllTodos, getTodo, updateTodo } from '../../../../../db/models';
+import TodoCheckBox from "../../../../components/TodoCheckBox.astro";
+
+export const partial = true;
+
+const { id } = Astro.params;
+
+if (!id) { return }
+
+const currentTodo = await getTodo(id);
+
+const updatedTodo = await updateTodo(id, currentTodo.completed);
+---
+<TodoCheckBox
+  id={updatedTodo.id}
+  completed={updatedTodo.completed}
+/>

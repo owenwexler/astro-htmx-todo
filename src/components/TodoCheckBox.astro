@@ -1,0 +1,11 @@
+---
+const { id, completed } = Astro.props;
+---
+<input
+  id={`todo-checkbox-${id}`}
+  type="checkbox"
+  class="toggle"
+  hx-patch={`/partials/todos/toggle/${id}`}
+  checked={completed}
+  hx-swap="outerHTML"
+/>

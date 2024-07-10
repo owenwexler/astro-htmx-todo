@@ -1,0 +1,38 @@
+---
+import AddTodo from "../components/AddTodo.astro";
+import TodoItem from "../components/TodoItem.astro";
+import { modelData } from "../data/modelData";
+import type { Todo } from "../typedefs/Todo";
+
+const todos: Todo[] = [...modelData] as Todo[];
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<script src="/htmx/htmx1.9.6.js" is:inline></script>
+		<title>The Best Todo App Ever</title>
+	</head>
+	<body>
+		<div
+			id="todo-header"
+			class="flex flex-col items-center justify-center m-5 space-y-4"
+		>
+			<h1 class="text-3xl">The Best Todo App Ever</h1>
+			<AddTodo />
+		</div>
+		<div
+			id="todo-container"
+			class="flex flex-col items-center justify-center space-y-2"
+			hx-get="/partials/todos/all"
+			hx-trigger="load"
+			hx-swap="innerHTML"
+		>
+
+		</div>
+		<button></button>
+	</body>
+</html>
