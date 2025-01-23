@@ -1,12 +1,11 @@
 ---
 import TodoItem from "../../../components/TodoItem.astro";
 
-// @ts-expect-error WHY TF UUID NOT TYPED
 import { v4 as uuidv4 } from 'uuid';
 
 import { db, Todos, NOW } from "astro:db";
 
-import { getAllTodos } from '../../../../db/models
+import { getAllTodos } from '../../../../db/models';
 
 const formData = await Astro.request.formData();
 const content = formData.get("content");
